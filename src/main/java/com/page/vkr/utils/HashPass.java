@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 
 public class HashPass {
     public static String getHashSha256(String password, String salt1, String salt2){
-        return sha256(sha256(sha256(password) + salt1) + salt2);
+        return sha256(sha256(password + salt1) + salt2);
     }
     public static String sha256(final String base) {
         try{
