@@ -28,8 +28,7 @@ public class AbitController {
         }catch (Exception e){
             return null;
         }
-        AbitSexNationalityEducationInfo
-                .AbitSexNationalityEducationInfoBuilder res = AbitSexNationalityEducationInfo.builder();
+        AbitSexNationalityEducationInfo.AbitSexNationalityEducationInfoBuilder res = AbitSexNationalityEducationInfo.builder();
 
         res.abit(abit);
         if(abit.getSex() != null)

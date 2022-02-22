@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/ dependency/* com.page.vkr.VkrApplication
+web: java $JAVA_OPTS -jar -Dserver.port=$PORT target/vkr-0.0.1-SNAPSHOT.jar
