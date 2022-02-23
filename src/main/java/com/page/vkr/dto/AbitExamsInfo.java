@@ -14,6 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AbitExamsInfo {
-    List<AbitExams> abitExams;
-    List<Exams> exams;
+    AbitExams abitExams;
+    Exams exams;
 }

@@ -8,6 +8,7 @@ import com.page.vkr.repo.abit.AbitExamsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -17,13 +18,21 @@ public class AbitExamsController {
     private final AbitExamsRepository abitExamsRepository;
 
     @GetMapping
-    public Object abitExams(@RequestParam("id_abit") Long id_abit) {
+    public List<Object> abitExams(@RequestParam("id_abit") Long id_abit) {
         List<AbitExams> abitExams = abitExamsRepository.findAllById_abit(id_abit);
-
-        return (abitExams != null) ? AbitExamsInfo.builder()
-                .abitExams(abitExams)
-                .exams(Cache.exams)
-                .build() : null;
+        List<Object> result = null;
+        if(abitExams != null){
+            result = new ArrayList<Object>();
+            for(AbitExams item : abitExams){
+                result.add(AbitExamsInfo.builder()
+                        .abitExams(item)
+                        .exams(Cache.exams.stream().filter(e -> e.getId().equals(item.getId_exam()))
+                                .findFirst()
+                                .orElse(null))
+                        .build());
+            }
+        }
+        return result;
     }
     @PostMapping(value = "/add")
     public void addAbitExams(@RequestBody List<AbitExams> exams){
