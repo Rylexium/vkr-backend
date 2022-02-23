@@ -1,9 +1,6 @@
 package com.page.vkr.dto;
 
-import com.page.vkr.models.Abit;
-import com.page.vkr.models.Education;
-import com.page.vkr.models.Nationality;
-import com.page.vkr.models.Sex;
+import com.page.vkr.models.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,4 +15,5 @@ public class AbitSexNationalityEducationInfo {
     Sex sex;
     Nationality nationality;
     Education education;
+    Privileges privilege;
 }

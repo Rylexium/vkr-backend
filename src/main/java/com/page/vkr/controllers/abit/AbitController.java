@@ -41,6 +41,10 @@ public class AbitController {
             res.education(Cache.educations.stream()
                                         .filter(e -> e.getId().equals(abit.getId_education()))
                                         .findFirst().orElse(null));
+        if(abit.getId_privileges() != null)
+            res.privilege(Cache.privileges.stream()
+                                            .filter(e -> e.getId().equals(abit.getId_privileges()))
+                                            .findFirst().orElse(null));
 
         return res.build();
     }

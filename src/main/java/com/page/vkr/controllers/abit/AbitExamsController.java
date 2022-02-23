@@ -15,7 +15,6 @@ import java.util.List;
 @RequestMapping("abit/exams")
 public class AbitExamsController {
     private final AbitExamsRepository abitExamsRepository;
-    private final ExamsRepository examsRepository;
 
     @GetMapping
     public Object abitExams(@RequestParam("id_abit") Long id_abit) {

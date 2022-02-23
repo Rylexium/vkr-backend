@@ -4,10 +4,7 @@ package com.page.vkr.controllers;
 import com.page.vkr.models.Users;
 import com.page.vkr.repo.UsersRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,5 +14,12 @@ public class UsersController {
     @PostMapping(value = "/add")
     public void addUser(@RequestBody Users user){
         usersRepository.save(new Users(user));
+    }
+
+    @PutMapping
+    public void updateIsEntry(@RequestParam("id_abit") Long id_abit){
+        Users user = usersRepository.findById_abit(id_abit);
+        user.setIs_entry(true);
+        usersRepository.save(user);
     }
 }

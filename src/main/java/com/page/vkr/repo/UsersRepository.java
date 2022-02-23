@@ -8,4 +8,7 @@ import org.springframework.data.repository.query.Param;
 public interface UsersRepository extends JpaRepository<Users, Integer> {
     @Query(value = "select * from users where login=:login", nativeQuery = true)
     Users findUserByLogin(@Param("login") String login);
+
+    @Query(value = "select * from users where id_abit=:id_abit", nativeQuery = true)
+    Users findById_abit(@Param("id_abit") Long id_abit);
 }
