@@ -33,6 +33,6 @@ public class AuthorizationController {
                     .idEducation(abitRepository.findEducationById(user.getId_abit()))
                     .build();
         }
-        return List.of(new HashMap<String, String>() {{put("status", "failed");}});
+        return new ArrayList<>() {{add(new HashMap<String, String>() {{put("status", "failed");}});}};
     }
 }
