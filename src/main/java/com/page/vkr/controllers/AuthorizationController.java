@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("authorization")
@@ -31,6 +33,6 @@ public class AuthorizationController {
                     .idEducation(abitRepository.findEducationById(user.getId_abit()))
                     .build();
         }
-        return new HashMap<String, String>() {{put("status", "failed");}};
+        return List.of(new HashMap<String, String>() {{put("status", "failed");}});
     }
 }
