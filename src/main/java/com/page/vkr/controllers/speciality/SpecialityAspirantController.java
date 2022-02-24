@@ -1,6 +1,10 @@
 package com.page.vkr.controllers.speciality;
 
 import com.page.vkr.controllers.cache.Cache;
+import com.page.vkr.dto.min.SpecialityMinInfo;
+import com.page.vkr.dto.min.SpecialityMinInfoAndInstitutAndTypeOfStudy;
+import com.page.vkr.models.Institutions;
+import com.page.vkr.models.TypeOfStudy;
 import com.page.vkr.repo.InstitutionsRepository;
 import com.page.vkr.repo.SpecialityRepository;
 import com.page.vkr.repo.TypeOfStudyRepository;
@@ -13,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.page.vkr.controllers.speciality.SpecialityController.getInstitutsMinInfos;
-import static com.page.vkr.controllers.speciality.SpecialityController.getSpecialityMinInfos;
+import static com.page.vkr.controllers.speciality.SpecialityController.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -40,6 +43,10 @@ public class SpecialityAspirantController {
 
         if(next > Cache.specialitiesForAbit.size()) next = Cache.specialitiesForAspirant.size();
 
-        return getSpecialityMinInfos(Cache.specialitiesForAspirant.subList(start, next));
+        List<Object> res = new ArrayList<>();
+        for(SpecialityMinInfo item : getSpecialityMinInfos(Cache.specialitiesForAspirant.subList(start, next))) {
+            getInfoSpecialitys(res, item);
+        }
+        return res;
     }
 }

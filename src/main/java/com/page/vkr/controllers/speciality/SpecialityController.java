@@ -4,7 +4,9 @@ import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.SpecialityInstitutCuratorFacultInfo;
 import com.page.vkr.dto.min.InstitutionsMinInfo;
 import com.page.vkr.dto.min.SpecialityMinInfo;
+import com.page.vkr.dto.min.SpecialityMinInfoAndInstitutAndTypeOfStudy;
 import com.page.vkr.models.Institutions;
+import com.page.vkr.models.TypeOfStudy;
 import com.page.vkr.models.speciality.Speciality;
 import com.page.vkr.repo.EmployeesRepository;
 import com.page.vkr.repo.FacultiesRepository;
@@ -80,5 +82,20 @@ public class SpecialityController {
         for (Institutions institutions : query)
             res.add(new InstitutionsMinInfo(institutions.getId(), institutions.getName()));
         return res;
+    }
+    public static void getInfoSpecialitys(List<Object> res, SpecialityMinInfo item) {
+        TypeOfStudy typeOfStudy = Cache.typeOfStudies.stream()
+                .filter(e -> e.getId().equals(item.getType_of_study()))
+                .findFirst()
+                .orElse(null);
+        Institutions institutions = Cache.institutions.stream()
+                .filter(e -> e.getId().equals(item.getId_institut()))
+                .findFirst()
+                .orElse(null);
+        res.add(SpecialityMinInfoAndInstitutAndTypeOfStudy.builder()
+                .specialityMinInfo(item)
+                .institut(institutions != null ? institutions.getName() : null)
+                .typeOfStudy(typeOfStudy != null? typeOfStudy.getName() : null)
+                .build());
     }
 }
