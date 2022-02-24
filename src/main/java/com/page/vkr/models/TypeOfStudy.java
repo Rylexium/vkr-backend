@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Data //auto generat getters and setters
 public class TypeOfStudy {
     @Id
-    private Long id;
+    private Integer id;
     private String name;
 
     public TypeOfStudy(){

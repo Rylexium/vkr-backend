@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Data //auto generat getters and setters
 public class TypeOfFinancing {
     @Id
-    private Long id;
+    private Integer id;
     private String name;
 
     public TypeOfFinancing(){}
