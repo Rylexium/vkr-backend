@@ -5,6 +5,7 @@ import com.page.vkr.models.Users;
 import com.page.vkr.repo.UsersRepository;
 import com.page.vkr.repo.abit.AbitRepository;
 import com.page.vkr.utils.HashPass;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +16,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("authorization")
 public class AuthorizationController {
-    @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private AbitRepository abitRepository;
+    private final UsersRepository usersRepository;
+    private final AbitRepository abitRepository;
 
     @GetMapping
     public Object authorization(@RequestParam(value = "login")      String login,

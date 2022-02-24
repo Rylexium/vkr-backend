@@ -69,16 +69,16 @@ public class SpecialityController {
 
     public static List<SpecialityMinInfo> getSpecialityMinInfos(List<Speciality> query) {
         List<SpecialityMinInfo> list = new ArrayList<>();
-        for(int i=0; i< query.size(); ++i)
-            list.add(new SpecialityMinInfo(query.get(i).getId(), query.get(i).getName(), query.get(i).getId_institut(),
-                    query.get(i).getType_of_study(), query.get(i).getBudget(), query.get(i).getPay()));
+        for (Speciality speciality : query)
+            list.add(new SpecialityMinInfo(speciality.getId(), speciality.getName(), speciality.getId_institut(),
+                    speciality.getType_of_study(), speciality.getBudget(), speciality.getPay()));
         return list;
     }
 
     public static List<InstitutionsMinInfo> getInstitutsMinInfos(List<Institutions> query){
         List<InstitutionsMinInfo> res = new ArrayList<>();
-        for(int i=0; i<query.size(); ++i)
-            res.add(new InstitutionsMinInfo(query.get(i).getId(), query.get(i).getName()));
+        for (Institutions institutions : query)
+            res.add(new InstitutionsMinInfo(institutions.getId(), institutions.getName()));
         return res;
     }
 }

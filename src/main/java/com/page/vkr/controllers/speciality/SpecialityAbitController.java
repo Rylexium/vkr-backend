@@ -20,23 +20,12 @@ import static com.page.vkr.controllers.speciality.SpecialityController.getSpecia
 @RequestMapping("speciality/abit")
 public class SpecialityAbitController {
 
-    public SpecialityAbitController(SpecialityRepository specialityRepository,
-                                    InstitutionsRepository institutionsRepository,
-                                    TypeOfStudyRepository typeOfStudyRepository) {
-        if(Cache.specialitiesForAbit == null) Cache.specialitiesForAbit = specialityRepository.findAllForAbit(0, 1000);
-        if(Cache.typeOfStudies == null) Cache.typeOfStudies = typeOfStudyRepository.findAll();
-        if(Cache.institutions == null) Cache.institutions = institutionsRepository.findAll();
-    }
-
     @GetMapping
     public Object forAbit(@RequestParam(value = "id_institut", defaultValue = "-1") Integer id_institut,
                                     @RequestParam(value = "start", defaultValue = "0") Integer start,
                                     @RequestParam(value = "next", defaultValue = "100") Integer next){
 
-        if((start + next) > Cache.specialitiesForAbit.size()){
-            start = 0;
-            next = Cache.specialitiesForAbit.size();
-        }
+        if(next > Cache.specialitiesForAbit.size()) next = Cache.specialitiesForAbit.size();
 
         return id_institut == -1? Cache.specialitiesForAbit.subList(start, next) :
                                   Cache.specialitiesForAbit.stream()
@@ -48,10 +37,9 @@ public class SpecialityAbitController {
     @GetMapping(value = "min")
     public Object forAbitMinInfo(@RequestParam(value = "start", defaultValue = "0") Integer start,
                                        @RequestParam(value = "next", defaultValue = "100") Integer next){
-        if((start + next) > Cache.specialitiesForAbit.size()){
-            start = 0;
-            next = Cache.specialitiesForAbit.size();
-        }
+
+        if(next > Cache.specialitiesForAbit.size()) next = Cache.specialitiesForAbit.size();
+
         return getSpecialityMinInfos(Cache.specialitiesForAbit.subList(start, next));
     }
 }
