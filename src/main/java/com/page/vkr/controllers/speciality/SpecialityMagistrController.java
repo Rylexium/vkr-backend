@@ -1,6 +1,7 @@
 package com.page.vkr.controllers.speciality;
 
 import com.page.vkr.controllers.cache.Cache;
+import com.page.vkr.dto.min.SpecialityIdNameInfo;
 import com.page.vkr.dto.min.SpecialityMinInfo;
 import com.page.vkr.dto.min.SpecialityMinInfoAndInstitutAndTypeOfStudy;
 import com.page.vkr.models.Institutions;
@@ -23,7 +24,7 @@ import static com.page.vkr.controllers.speciality.SpecialityController.*;
 @RestController
 @RequestMapping("speciality/magistr")
 public class SpecialityMagistrController {
-
+    private final SpecialityRepository specialityRepository;
     @GetMapping
     public Object forMagistr(@RequestParam(value = "id_institut", defaultValue = "-1") Integer id_institut,
                                        @RequestParam(value = "start", defaultValue = "0") Integer start,
@@ -49,4 +50,18 @@ public class SpecialityMagistrController {
         }
         return res;
     }
+
+    @GetMapping(value = "/info")
+    public Object forInfoIdNameSpeciality(@RequestParam(value = "id_institut") Integer id_institut){
+        List<Object> res = new ArrayList<>();
+        for(String item : specialityRepository.findAllSpecialityForMagistrById_institut(id_institut)){
+            List<String> listItem = List.of(item.split(","));
+            res.add(SpecialityIdNameInfo.builder()
+                    .id(listItem.get(0))
+                    .name(listItem.get(1))
+                    .build());
+        }
+        return res;
+    }
+
 }

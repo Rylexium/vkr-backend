@@ -2,13 +2,10 @@ package com.page.vkr.controllers.speciality;
 
 
 import com.page.vkr.controllers.cache.Cache;
+import com.page.vkr.dto.min.SpecialityIdNameInfo;
 import com.page.vkr.dto.min.SpecialityMinInfo;
-import com.page.vkr.dto.min.SpecialityMinInfoAndInstitutAndTypeOfStudy;
-import com.page.vkr.models.Institutions;
-import com.page.vkr.models.TypeOfStudy;
-import com.page.vkr.repo.InstitutionsRepository;
 import com.page.vkr.repo.SpecialityRepository;
-import com.page.vkr.repo.TypeOfStudyRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,9 +16,11 @@ import java.util.List;
 
 import static com.page.vkr.controllers.speciality.SpecialityController.*;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("speciality/abit")
 public class SpecialityAbitController {
+    private final SpecialityRepository specialityRepository;
 
     @GetMapping
     public Object forAbit(@RequestParam(value = "id_institut", defaultValue = "-1") Integer id_institut,
@@ -45,6 +44,19 @@ public class SpecialityAbitController {
         List<Object> res = new ArrayList<>();
         for(SpecialityMinInfo item : getSpecialityMinInfos (Cache.specialitiesForAbit.subList(start, next))) {
             getInfoSpecialitys(res, item);
+        }
+        return res;
+    }
+
+    @GetMapping(value = "/info")
+    public Object forInfoIdNameSpeciality(@RequestParam(value = "id_institut") Integer id_institut){
+        List<Object> res = new ArrayList<>();
+        for(String item : specialityRepository.findAllSpecialityForAbitById_institut(id_institut)){
+            List<String> listItem = List.of(item.split(","));
+            res.add(SpecialityIdNameInfo.builder()
+                    .id(listItem.get(0))
+                    .name(listItem.get(1))
+                    .build());
         }
         return res;
     }
