@@ -46,16 +46,12 @@ public class SpecialityAbitController {
     }
 
     @GetMapping(value = "min")
-    public List<Object> forAbitMinInfo(@RequestParam(value = "start", defaultValue = "0") Integer start,
+    public Object forAbitMinInfo(@RequestParam(value = "start", defaultValue = "0") Integer start,
                                        @RequestParam(value = "next", defaultValue = "100") Integer next){
         if((start + next) > Cache.specialitiesForAbit.size()){
             start = 0;
             next = Cache.specialitiesForAbit.size();
         }
-        List<Object> res = new ArrayList<>();
-        res.add(getSpecialityMinInfos(Cache.specialitiesForAbit.subList(start, next)));
-        res.add(getInstitutsMinInfos(Cache.institutions));
-        res.add(Cache.typeOfStudies);
-        return res;
+        return getSpecialityMinInfos(Cache.specialitiesForAbit.subList(start, next));
     }
 }
