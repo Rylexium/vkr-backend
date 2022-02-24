@@ -17,7 +17,7 @@ public class AbitPrivilegesController {
     private final AbitPrivilegesRepository abitPrivilegesRepository;
 
     @GetMapping(value = "/privileges")
-    public List<AbitPrivileges> abitPrivileges(@RequestParam("id_abit") Long id_abit){
+    public AbitPrivileges abitPrivileges(@RequestParam("id_abit") Long id_abit){
         return abitPrivilegesRepository.findAllById_abit(id_abit);
     }
 }

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface AbitPrivilegesRepository extends JpaRepository<AbitPrivileges, Long> {
     @Query(value = "select * from abit_privileges where id_abit=:id_abit", nativeQuery = true)
-    List<AbitPrivileges> findAllById_abit(@Param("id_abit") Long id_abit);
+    AbitPrivileges findAllById_abit(@Param("id_abit") Long id_abit);
 }
