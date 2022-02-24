@@ -40,7 +40,7 @@ public class SpecialityMagistrController {
     public Object forMagistrMinInfo(@RequestParam(value = "start", defaultValue = "0") Integer start,
                                           @RequestParam(value = "next", defaultValue = "100") Integer next){
 
-        if(next > Cache.specialitiesForAbit.size()) next = Cache.specialitiesForMagistr.size();
+        if(next > Cache.specialitiesForMagistr.size()) next = Cache.specialitiesForMagistr.size();
 
 
         List<Object> res = new ArrayList<>();

@@ -41,7 +41,7 @@ public class SpecialityAspirantController {
     public Object forAspirantMinInfo(@RequestParam(value = "start", defaultValue = "0") Integer start,
                                            @RequestParam(value = "next", defaultValue = "100") Integer next){
 
-        if(next > Cache.specialitiesForAbit.size()) next = Cache.specialitiesForAspirant.size();
+        if(next > Cache.specialitiesForAspirant.size()) next = Cache.specialitiesForAspirant.size();
 
         List<Object> res = new ArrayList<>();
         for(SpecialityMinInfo item : getSpecialityMinInfos(Cache.specialitiesForAspirant.subList(start, next))) {
