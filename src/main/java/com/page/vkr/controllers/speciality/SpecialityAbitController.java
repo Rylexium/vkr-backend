@@ -52,10 +52,10 @@ public class SpecialityAbitController {
     public Object forInfoIdNameSpeciality(@RequestParam(value = "id_institut") Integer id_institut){
         List<Object> res = new ArrayList<>();
         for(String item : specialityRepository.findAllSpecialityForAbitById_institut(id_institut)){
-            List<String> listItem = List.of(item.split(","));
+            String[] listItem = item.split(",");
             res.add(SpecialityIdNameInfo.builder()
-                    .id(listItem.get(0))
-                    .name(listItem.get(1))
+                    .id(listItem[0])
+                    .name(listItem[1])
                     .build());
         }
         return res;
