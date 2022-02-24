@@ -51,6 +51,10 @@ public class SpecialityController {
                     .SpecialityInstitutCuratorFacultInfoBuilder res = SpecialityInstitutCuratorFacultInfo.builder();
 
             res.speciality(speciality);
+            res.typeOfStudy(Cache.typeOfStudies.stream()
+                    .filter(e->e.getId().equals(speciality.getType_of_study()))
+                    .findFirst()
+                    .orElse(null));
             if(speciality.getCurator() != null)
                 res.curator(employeesRepository.findById(speciality.getCurator()));
             if(speciality.getId_institut() != null)
@@ -77,12 +81,6 @@ public class SpecialityController {
         return list;
     }
 
-    public static List<InstitutionsMinInfo> getInstitutsMinInfos(List<Institutions> query){
-        List<InstitutionsMinInfo> res = new ArrayList<>();
-        for (Institutions institutions : query)
-            res.add(new InstitutionsMinInfo(institutions.getId(), institutions.getName()));
-        return res;
-    }
     public static void getInfoSpecialitys(List<Object> res, SpecialityMinInfo item) {
         TypeOfStudy typeOfStudy = Cache.typeOfStudies.stream()
                 .filter(e -> e.getId().equals(item.getType_of_study()))
