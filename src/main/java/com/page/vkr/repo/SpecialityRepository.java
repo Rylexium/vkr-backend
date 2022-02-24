@@ -41,4 +41,8 @@ public interface SpecialityRepository extends JpaRepository<Speciality, Long> {
     Speciality findByIdAndTypeOfStudy(@Param("id") String id,
                         @Param("type_of_study") Integer type_of_study);
 
+    @Query(value = "select name from speciality where id=:id and type_of_study=:type_of_study", nativeQuery = true)
+    String getNameSpecByIdAndType_of_study(@Param("id") String id,
+                                      @Param("type_of_study") Integer type_of_study);
+
 }

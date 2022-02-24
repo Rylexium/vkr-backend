@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AbitSpecAndTypeOfStudiesFinancing {
     AbitSpec abitSpec;
+    String nameSpec;
     TypeOfStudy typeOfStudy;
     String nameInstitution;
 }
