@@ -1,5 +1,6 @@
 package com.page.vkr.dto;
 
+import com.page.vkr.models.Institutions;
 import com.page.vkr.models.TypeOfFinancing;
 import com.page.vkr.models.TypeOfStudy;
 import com.page.vkr.models.abitSpec.AbitSpec;
@@ -15,5 +16,5 @@ import lombok.NoArgsConstructor;
 public class AbitSpecAndTypeOfStudiesFinancing {
     AbitSpec abitSpec;
     TypeOfStudy typeOfStudy;
-    TypeOfFinancing typeOfFinancing;
+    String nameInstitution;
 }

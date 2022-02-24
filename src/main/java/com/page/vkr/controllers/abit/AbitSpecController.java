@@ -3,7 +3,9 @@ package com.page.vkr.controllers.abit;
 
 import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.AbitSpecAndTypeOfStudiesFinancing;
+import com.page.vkr.models.Institutions;
 import com.page.vkr.models.abitSpec.AbitSpec;
+import com.page.vkr.repo.InstitutionsRepository;
 import com.page.vkr.repo.abit.AbitSpecRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequestMapping("abit/spec")
 public class AbitSpecController {
     private final AbitSpecRepository abitSpecRepository;
+    private final InstitutionsRepository institutionsRepository;
 
     @GetMapping(value = "")
     public List<AbitSpecAndTypeOfStudiesFinancing> abitSpecs(@RequestParam("id_abit") Long id_abit) {
@@ -31,11 +34,7 @@ public class AbitSpecController {
                 item.typeOfStudy(Cache.typeOfStudies.stream()
                         .filter(e -> e.getId().equals(abitSpec.getType_of_study()))
                         .findFirst().orElse(null));
-
-            if(abitSpec.getId_financing() != null)
-                item.typeOfFinancing(Cache.typeOfFinancings.stream()
-                        .filter(e -> e.getId().equals(abitSpec.getId_financing()))
-                        .findFirst().orElse(null));
+            item.nameInstitution(institutionsRepository.getNameInstitutionsById(abitSpec.getId_spec(), abitSpec.getType_of_study()));
             res.add(item.build());
         });
 
