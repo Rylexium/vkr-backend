@@ -23,4 +23,13 @@ public interface AbitSpecRepository extends JpaRepository<AbitSpec, Long> {
                                                               @Param("id_spec") String id_spec,
                                                               @Param("type_of_study") Integer type_of_study);
 
+    @Query(value = "UPDATE abit_spec SET priority=:priority, id_financing=:id_financing, date_filing=:date_filing " +
+            "WHERE id_abit=:id_abit and id_spec=:id_spec and type_of_study=:type_of_study", nativeQuery = true)
+    AbitSpec updateAbitSpecById_abitAndId_specAndType_of_study(@Param("id_abit") Long id_abit,
+                                                               @Param("id_spec") String id_spec,
+                                                               @Param("type_of_study") Integer type_of_study,
+                                                               @Param("priority") Integer priority,
+                                                               @Param("id_financing") Integer id_financing,
+                                                               @Param("date_filing") String date_filing);
+
 }

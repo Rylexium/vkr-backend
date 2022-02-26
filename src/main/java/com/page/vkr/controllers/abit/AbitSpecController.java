@@ -45,16 +45,21 @@ public class AbitSpecController {
     }
 
     @PostMapping(value = "/add")
-    public void addAbitSpec(@RequestBody AbitSpec abitSpec){
-        abitSpecRepository.save(abitSpec);
+    public void addAbitSpec(@RequestBody List<AbitSpec> abitSpec){
+        abitSpecRepository.saveAll(abitSpec);
     }
 
     @DeleteMapping(value = "/delete")
-    public HashMap<String, String> editAbitSpec(@RequestParam("id_abit") Long id_abit,
+    public HashMap<String, String> deleteAbitSpec(@RequestParam("id_abit") Long id_abit,
                                @RequestParam("id_spec") String id_spec,
                                @RequestParam("type_of_study") Integer type_of_study){
         return abitSpecRepository.deleteAbitSpecsById_abitAndId_specAndType_of_study(id_abit, id_spec, type_of_study) == 1?
                 new HashMap<String, String>(){{put("status", "successful");}} : new HashMap<String, String>(){{put("status", "failed");}};
+    }
+
+    @PutMapping(value = "/update")
+    public void updateAbitSpec(@RequestBody List<AbitSpec> abitSpec){
+        abitSpecRepository.saveAll(abitSpec);
     }
 
 }
