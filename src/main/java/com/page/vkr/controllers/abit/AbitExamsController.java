@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -35,7 +36,8 @@ public class AbitExamsController {
         return result;
     }
     @PostMapping(value = "/add")
-    public void addAbitExams(@RequestBody List<AbitExams> exams){
+    public HashMap<String, String> addAbitExams(@RequestBody List<AbitExams> exams){
         abitExamsRepository.saveAll(exams);
+        return new HashMap<String, String>(){{put("status", "successful");}};
     }
 }

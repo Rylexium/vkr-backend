@@ -45,8 +45,9 @@ public class AbitSpecController {
     }
 
     @PostMapping(value = "/add")
-    public void addAbitSpec(@RequestBody List<AbitSpec> abitSpec){
+    public HashMap<String, String> addAbitSpec(@RequestBody List<AbitSpec> abitSpec){
         abitSpecRepository.saveAll(abitSpec);
+        return new HashMap<String, String>(){{put("status", "successful");}};
     }
 
     @DeleteMapping(value = "/delete")
