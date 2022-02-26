@@ -56,10 +56,4 @@ public class AbitSpecController {
         return abitSpecRepository.deleteAbitSpecsById_abitAndId_specAndType_of_study(id_abit, id_spec, type_of_study) == 1?
                 new HashMap<String, String>(){{put("status", "successful");}} : new HashMap<String, String>(){{put("status", "failed");}};
     }
-
-    @PutMapping(value = "/update")
-    public void updateAbitSpec(@RequestBody List<AbitSpec> abitSpec){
-        abitSpecRepository.saveAll(abitSpec);
-    }
-
 }
