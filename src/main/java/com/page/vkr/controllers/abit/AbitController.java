@@ -2,10 +2,7 @@ package com.page.vkr.controllers.abit;
 
 import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.AbitSexNationalityEducationInfo;
-import com.page.vkr.dto.min.AbitEducationInfo;
-import com.page.vkr.dto.min.AbitMinInfo;
-import com.page.vkr.dto.min.AbitPassportInfo;
-import com.page.vkr.dto.min.AbitPrivivelegesInfo;
+import com.page.vkr.dto.min.*;
 import com.page.vkr.models.Abit;
 import com.page.vkr.repo.EducationRepository;
 import com.page.vkr.repo.NationalityRepository;
@@ -146,6 +143,21 @@ public class AbitController {
         }
 
         return AbitPrivivelegesInfo.builder()
+                .privileges(abit.getPrivileges())
+                .build();
+    }
+
+
+    @GetMapping(value = "/achievements")
+    public Object achievements(@RequestParam("id") Long id){
+        Abit abit;
+        try {
+            abit = abitRepository.findById(id).get();
+        }catch (Exception e){
+            return null;
+        }
+
+        return AbitAchievementsInfo.builder()
                 .achievement1(abit.getAchievement1())
                 .achievement2(abit.getAchievement2())
                 .achievement3(abit.getAchievement3())

@@ -10,9 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AbitPrivivelegesInfo {
-    private String achievement1;
-    private String achievement2;
-    private String achievement3;
-    private String achievement4;
-    private String achievement5;
+    private String privileges;
 }

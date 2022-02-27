@@ -43,6 +43,8 @@ public class Abit {
     private String achievement4;
     private String achievement5;
 
+    private String privileges;
+
     public Abit(){
     }
 
