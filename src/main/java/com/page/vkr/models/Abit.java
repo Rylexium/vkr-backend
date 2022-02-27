@@ -30,6 +30,19 @@ public class Abit {
     private String date_of_birthday;
     private Integer id_privileges;
 
+    private String passport1;
+    private String passport2;
+    private String snills;
+
+    private String education1;
+    private String education2;
+
+    private String achievement1;
+    private String achievement2;
+    private String achievement3;
+    private String achievement4;
+    private String achievement5;
+
     public Abit(){
     }
 
@@ -51,7 +64,17 @@ public class Abit {
             String date_of_issing_passport,
             String date_of_issing_education,
             String date_of_birthday,
-            Integer id_privileges)
+            Integer id_privileges,
+            String passport1,
+            String passport2,
+            String snills,
+            String education1,
+            String education2,
+            String achievement1,
+            String achievement2,
+            String achievement3,
+            String achievement4,
+            String achievement5)
     {
         this.id = id;
         this.phone = phone;
@@ -72,5 +95,16 @@ public class Abit {
         this.date_of_issing_education = date_of_issing_education;
         this.date_of_birthday = date_of_birthday;
         this.id_privileges = id_privileges;
+        this.passport1 = passport1;
+        this.passport2 = passport2;
+        this.snills = snills;
+        this.education1 = education1;
+        this.education2 = education2;
+        this.achievement1 = achievement1;
+        this.achievement2 = achievement2;
+        this.achievement3 = achievement3;
+        this.achievement4 = achievement4;
+        this.achievement5 = achievement5;
+
     }
 }

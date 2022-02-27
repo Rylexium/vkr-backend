@@ -2,12 +2,17 @@ package com.page.vkr.controllers.abit;
 
 import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.AbitSexNationalityEducationInfo;
+import com.page.vkr.dto.min.AbitEducationInfo;
+import com.page.vkr.dto.min.AbitMinInfo;
+import com.page.vkr.dto.min.AbitPassportInfo;
+import com.page.vkr.dto.min.AbitPrivivelegesInfo;
 import com.page.vkr.models.Abit;
 import com.page.vkr.repo.EducationRepository;
 import com.page.vkr.repo.NationalityRepository;
 import com.page.vkr.repo.SexRepository;
 import com.page.vkr.repo.abit.AbitRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -30,7 +35,30 @@ public class AbitController {
         }
         AbitSexNationalityEducationInfo.AbitSexNationalityEducationInfoBuilder res = AbitSexNationalityEducationInfo.builder();
 
-        res.abit(abit);
+        res.abit(AbitMinInfo.builder() //всё кроме фото
+                .id(abit.getId())
+                .phone(abit.getPhone())
+                .email(abit.getEmail())
+                .family(abit.getFamily())
+                .name(abit.getName())
+                .patronymic(abit.getPatronymic())
+                .sex(abit.getSex())
+                .id_nationality(abit.getId_nationality())
+                .passport(abit.getPassport())
+                .departament_code(abit.getDepartament_code())
+                .const_address(abit.getConst_address())
+                .actual_address(abit.getActual_address())
+                .id_education(abit.getId_education())
+                .number_education(abit.getNumber_education())
+                .reg_number_education(abit.getReg_number_education())
+                .date_of_issing_passport(abit.getDate_of_issing_passport())
+                .date_of_issing_education(abit.getDate_of_issing_education())
+                .date_of_birthday(abit.getDate_of_birthday())
+                .id_privileges(abit.getId_privileges())
+                .build());
+
+
+
         if(abit.getSex() != null)
             res.sex(Cache.sexes.stream().filter(e -> e.getId().equals(abit.getSex())).findFirst().orElse(null));
         if(abit.getId_nationality() != null)
@@ -73,5 +101,57 @@ public class AbitController {
     public HashMap<String, String> addAbit(@RequestBody Abit abit){
         abitRepository.save(abit);
         return new HashMap<String, String>(){{put("status", "successful");}};
+    }
+
+    @GetMapping(value = "/passport")
+    public Object passports(@RequestParam("id") Long id){
+        Abit abit;
+        try {
+            abit = abitRepository.findById(id).get();
+        }catch (Exception e){
+            return null;
+        }
+
+        return AbitPassportInfo.builder()
+                .passport1(abit.getPassport1())
+                .passport2(abit.getPassport2())
+                .snills(abit.getSnills())
+                .build();
+
+    }
+
+    @GetMapping(value = "/education")
+    public Object educations(@RequestParam("id") Long id){
+        Abit abit;
+        try {
+            abit = abitRepository.findById(id).get();
+        }catch (Exception e){
+            return null;
+        }
+
+        return AbitEducationInfo.builder()
+                .education1(abit.getEducation1())
+                .education2(abit.getEducation2())
+                .build();
+
+    }
+
+    @GetMapping(value = "/privileges")
+    public Object privileges(@RequestParam("id") Long id){
+        Abit abit;
+        try {
+            abit = abitRepository.findById(id).get();
+        }catch (Exception e){
+            return null;
+        }
+
+        return AbitPrivivelegesInfo.builder()
+                .achievement1(abit.getAchievement1())
+                .achievement2(abit.getAchievement2())
+                .achievement3(abit.getAchievement3())
+                .achievement4(abit.getAchievement4())
+                .achievement5(abit.getAchievement5())
+                .build();
+
     }
 }
