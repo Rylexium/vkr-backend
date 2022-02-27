@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface InstitutionsRepository extends JpaRepository<Institutions, Integer> {
@@ -16,5 +17,8 @@ public interface InstitutionsRepository extends JpaRepository<Institutions, Inte
     @Query(value = "SELECT (select name from institutions where id=id_institut) from speciality " +
             "where id=:id_spec and type_of_study=:type_of_study", nativeQuery = true)
     String getNameInstitutionsById(@Param("id_spec") String id_spec, @Param("type_of_study") Integer type_of_study);
+
+    @Query(value = "select * from institutions order by id", nativeQuery = true)
+    List<Institutions> findAll();
 
 }
