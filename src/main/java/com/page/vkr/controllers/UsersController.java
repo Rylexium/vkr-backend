@@ -6,14 +6,17 @@ import com.page.vkr.repo.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("users")
 public class UsersController {
     private final UsersRepository usersRepository;
     @PostMapping(value = "/add")
-    public void addUser(@RequestBody Users user){
+    public HashMap<String, String> addUser(@RequestBody Users user){
         usersRepository.save(new Users(user));
+        return new HashMap<String, String>(){{put("status", "successful");}};
     }
 
     @PutMapping

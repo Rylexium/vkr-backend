@@ -70,7 +70,8 @@ public class AbitController {
     }
 
     @PostMapping(value = "/add")
-    public void addAbit(@RequestBody Abit abit){
+    public HashMap<String, String> addAbit(@RequestBody Abit abit){
         abitRepository.save(abit);
+        return new HashMap<String, String>(){{put("status", "successful");}};
     }
 }
