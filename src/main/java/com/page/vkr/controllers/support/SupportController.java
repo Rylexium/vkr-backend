@@ -57,10 +57,8 @@ public class SupportController {
 
     @GetMapping(value = "confirm_code")
     public HashMap<String, String> confirmCodeForUser(@RequestParam(value = "login", required = false) String login,
-                                                      @RequestParam(value = "phone", required = false) String phone,
-                                                      @RequestParam(value = "id", required = false) Long id,
                                                       @RequestParam(value = "code") String code){
-        Users user = findUser(login, phone, id);
+        Users user = usersRepository.findUserByLogin(login);
 
         if(user.getConfirm_code().equals(code)) {
             user.setConfirm_code("");
@@ -73,7 +71,7 @@ public class SupportController {
     @PostMapping(value = "change_password")
     public HashMap<String, String> changePasswordForUser(@RequestParam(value = "login") String login,
                                                          @RequestParam("password") String password){
-        Users user = findUser(login, null, null);
+        Users user = usersRepository.findUserByLogin(login);
 
         user.setPassword(HashPass.getHashSha256(password, user.getSalt1(), user.getSalt2()));
         usersRepository.save(user);
@@ -91,10 +89,4 @@ public class SupportController {
         return new HashMap<String, String>(){{put("login", finalLogin);}};
     }
 
-    private Users findUser(String login, String phone, Long id){
-        if(login != null) return usersRepository.findUserByLogin(login);
-        else if (phone != null) return usersRepository.findByPhone(phone);
-        else if(id != null) return usersRepository.findById_abit(id);
-        return null;
-    }
 }
