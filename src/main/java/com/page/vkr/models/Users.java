@@ -21,6 +21,7 @@ public class Users {
     private String salt2;
     private Long id_abit;
     private Boolean is_entry;
+    private String confirm_code;
 
     public Users(){
     }
