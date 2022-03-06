@@ -2,12 +2,6 @@ package com.page.vkr.controllers.speciality;
 
 import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.min.SpecialityMinInfo;
-import com.page.vkr.dto.min.SpecialityMinInfoAndInstitutAndTypeOfStudy;
-import com.page.vkr.models.Institutions;
-import com.page.vkr.models.TypeOfStudy;
-import com.page.vkr.repo.InstitutionsRepository;
-import com.page.vkr.repo.SpecialityRepository;
-import com.page.vkr.repo.TypeOfStudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

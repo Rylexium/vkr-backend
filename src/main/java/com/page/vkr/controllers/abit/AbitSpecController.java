@@ -3,7 +3,6 @@ package com.page.vkr.controllers.abit;
 
 import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.AbitSpecAndTypeOfStudiesFinancing;
-import com.page.vkr.models.Institutions;
 import com.page.vkr.models.abitSpec.AbitSpec;
 import com.page.vkr.repo.InstitutionsRepository;
 import com.page.vkr.repo.SpecialityRepository;

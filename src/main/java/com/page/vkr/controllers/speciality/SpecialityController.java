@@ -2,7 +2,6 @@ package com.page.vkr.controllers.speciality;
 
 import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.SpecialityInstitutCuratorFacultInfo;
-import com.page.vkr.dto.min.InstitutionsMinInfo;
 import com.page.vkr.dto.min.SpecialityMinInfo;
 import com.page.vkr.dto.min.SpecialityMinInfoAndInstitutAndTypeOfStudy;
 import com.page.vkr.models.Institutions;

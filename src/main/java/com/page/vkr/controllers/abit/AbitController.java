@@ -4,12 +4,8 @@ import com.page.vkr.controllers.cache.Cache;
 import com.page.vkr.dto.AbitSexNationalityEducationInfo;
 import com.page.vkr.dto.min.*;
 import com.page.vkr.models.Abit;
-import com.page.vkr.repo.EducationRepository;
-import com.page.vkr.repo.NationalityRepository;
-import com.page.vkr.repo.SexRepository;
 import com.page.vkr.repo.abit.AbitRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
