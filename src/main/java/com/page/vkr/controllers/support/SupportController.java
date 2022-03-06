@@ -25,7 +25,7 @@ public class SupportController {
     @GetMapping(value = "password")
     public HashMap<String, String> rememberPassword(@RequestParam(value = "login", required = false) String login,
                                                     @RequestParam(value = "phone", required = false) String phone,
-                                                    @RequestParam(value = "id", required = false) Long id){
+                                                    @RequestParam(value = "id_abit", required = false) Long id_abit){
         String email = "";
         Users user = null;
         if(login != null){
@@ -36,9 +36,9 @@ public class SupportController {
             email = abitRepository.findEmailByPhone(phone);
             user = usersRepository.findByPhone(phone);
         }
-        else if(id != null){
-            email = abitRepository.findById(id).get().getEmail();
-            user = usersRepository.findById_abit(id);
+        else if(id_abit != null){
+            email = abitRepository.findById(id_abit).get().getEmail();
+            user = usersRepository.findById_abit(id_abit);
         }
 
         StringBuilder code = new StringBuilder("");
