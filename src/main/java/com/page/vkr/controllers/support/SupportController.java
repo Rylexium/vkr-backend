@@ -48,9 +48,11 @@ public class SupportController {
 
         user.setConfirm_code(code.toString());
         usersRepository.save(user);
-
         new Thread(()-> emailSenderService.sendSimpleEmail(finalEmail, "Код подтверждения: " + code, "spring")).start();
-        return new HashMap<String, String>(){{put("status", "successful");}};
+
+        if(login == null) login = user.getLogin();
+        String finalLogin = login;
+        return new HashMap<String, String>(){{put("login", finalLogin);}};
     }
 
     @GetMapping(value = "confirm_code")
@@ -69,11 +71,9 @@ public class SupportController {
     }
 
     @PostMapping(value = "change_password")
-    public HashMap<String, String> changePasswordForUser(@RequestParam(value = "login", required = false) String login,
-                                                         @RequestParam(value = "phone", required = false) String phone,
-                                                         @RequestParam(value = "id", required = false) Long id,
+    public HashMap<String, String> changePasswordForUser(@RequestParam(value = "login") String login,
                                                          @RequestParam("password") String password){
-        Users user = findUser(login, phone, id);
+        Users user = findUser(login, null, null);
 
         user.setPassword(HashPass.getHashSha256(password, user.getSalt1(), user.getSalt2()));
         usersRepository.save(user);
