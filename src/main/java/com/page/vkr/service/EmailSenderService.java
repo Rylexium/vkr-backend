@@ -16,7 +16,7 @@ public class EmailSenderService {
         SimpleMailMessage message = new SimpleMailMessage();
 
 
-        message.setFrom("spring.vkr@gmail.com");
+        message.setFrom("rylexium@gmail.com");
         message.setTo(toEmail);
         message.setText(body);
         message.setSubject(subject);

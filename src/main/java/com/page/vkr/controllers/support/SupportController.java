@@ -48,7 +48,7 @@ public class SupportController {
 
         user.setConfirm_code(code.toString());
         usersRepository.save(user);
-        new Thread(()-> emailSenderService.sendSimpleEmail(finalEmail, "Код подтверждения: " + code, "spring")).start();
+        new Thread(()-> emailSenderService.sendSimpleEmail(finalEmail, "Код подтверждения: " + code, "Восстановление")).start();
 
         if(login == null) login = user.getLogin();
         String finalLogin = login;
