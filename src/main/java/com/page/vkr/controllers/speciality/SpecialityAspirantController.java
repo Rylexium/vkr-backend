@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.page.vkr.controllers.speciality.SpecialityController.*;
@@ -41,6 +42,6 @@ public class SpecialityAspirantController {
         for(SpecialityMinInfo item : getSpecialityMinInfos(Cache.specialitiesForAspirant.subList(start, next))) {
             getInfoSpecialitys(res, item);
         }
-        return res;
+        return new HashMap<String, Object>(){{ put("speciality", res); put("len", Cache.specialitiesForAspirant.size()); }};
     }
 }
